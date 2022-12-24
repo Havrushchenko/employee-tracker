@@ -1,0 +1,67 @@
+// import mysql2
+const mysql = require('mysql2')
+// import inquirer 
+const inquirer = require('inquirer'); 
+// import console.table
+const cTable = require('console.table'); 
+
+
+// connection to database
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'bonik566569',
+  database: 'employee'
+});
+
+connection.connect(err => {
+  if (err) throw err;
+  console.log('connected as id ' + connection.threadId);
+  promptUser();
+});
+
+
+
+// inquirer prompt for first action
+const promptUser = () => {
+  inquirer.prompt ([
+    {
+      type: 'list',
+      name: 'choices', 
+      message: 'What would you like to do?',
+      choices: ['View all departments', 
+                'View all roles', 
+                'View all employees', 
+                'Add a department', 
+                'Add a role', 
+                'Add an employee', 
+                'Update an employee role',
+                'Update an employee manager',
+                "View employees by department",
+                'Delete a department',
+                'Delete a role',
+                'Delete an employee',
+                'View department budgets',
+                'No Action']
+    }
+  ])
+    .then((answers) => {
+      const { choices } = answers; 
+
+      if (choices === "View all departments") {
+        showDepartments();
+      }
+  });
+};
+
+// function to show all departments 
+showDepartments = () => {
+  console.log('Showing all departments...\n');
+  const sql = `SELECT department.id AS id, department.name AS department FROM department`; 
+
+  connection.query(sql, (err, rows) => {
+    if (err) throw err;
+    console.table(rows);
+    promptUser();
+  });
+};

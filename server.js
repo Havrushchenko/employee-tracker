@@ -20,8 +20,34 @@ const db = mysql.createConnection(
     console.log('Connected to the election database.')
 );
 
-db.query(`SELECT * FROM department`, (err, rows) => {
-    console.log(rows);
+const questions = [
+    {
+        type: 'list',
+        name: 'choise',
+        message: 'What would you like to do?',
+        choices: [
+            'View all departments.',
+            'View all roles.',
+            'View all employees.',
+            'Add a department.',
+            'Add a role.',
+            'Add an employee.',
+            'Update an employee role.',
+        ],
+        validate: choiceList => {
+            if (choiceList) {
+                return true;
+            } else {
+                console.log('You must select one from the list!');
+                return false;
+            }
+        }
+    }
+];
+
+inquirer.prompt(questions).then((answers) => {
+    console.log('\nOrder receipt:');
+    console.log(JSON.stringify(answers, null, '  '));
 });
 
 app.use((req, res) => {

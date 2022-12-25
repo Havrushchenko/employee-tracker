@@ -14,8 +14,6 @@
   [Walkthrough Video](./assets/img/command-line-walkthrough.mp4)
 
   We look forward to a further updates. In next version of program will be added the ability to do the following: update employee managers, view employees by manager, view employees by department, delete departments, roles, and employees. The logic of adding roles and employees will also be adjusted.
-
-View the total utilized budget of a department—in other words, the combined salaries of all employees in that department. 
   
   ## Installation:
   The application will be invoked by using the following command: node server.

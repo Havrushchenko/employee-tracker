@@ -12,8 +12,8 @@ const connection = mysql.createConnection(
         // Your MySQL username,
         user: 'root',
         // Your MySQL password
-        password: '',
-        database: 'employee'
+        password: 'bonik566569',
+        database: 'employee_db'
     },
     console.log('Connected to the employee database.')
 );
@@ -37,7 +37,8 @@ const questions = () => {
                 'View all employees.',
                 'Add a department.',
                 'Add a role.',
-                'Add an employee.'
+                'Add an employee.',
+                'End.'
             ],
             validate: choicesList => {
                 if (choicesList) {
@@ -67,6 +68,9 @@ const questions = () => {
         }
         if (choices === "Add an employee.") {
             addEmployee();
+        }
+        if (choices === "End.") {
+            connection.end();
         }
     });
 };
@@ -151,19 +155,16 @@ addRole = () => {
             type: "input",
             name: "addRole",
             message: "What is the role Title?"
-
         },
         {
             type: "input",
             name: "addSalary",
             message: "What is the Salary?"
-
         },
         {
             type: "input",
             name: "addDepartment",
             message: "What is the Department?"
-
         },
     ])
         .then(answer => {

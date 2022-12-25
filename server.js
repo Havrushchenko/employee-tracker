@@ -12,7 +12,7 @@ const connection = mysql.createConnection(
         // Your MySQL username,
         user: 'root',
         // Your MySQL password
-        password: '******',
+        password: '',
         database: 'employee_db'
     },
     console.log('Connected to the employee database.')
@@ -131,7 +131,7 @@ addDepartment = () => {
                 if (department) {
                     return true;
                 } else {
-                    console.log('Please enter a department!');
+                    console.log('Please add a department!');
                     return false;
                 }
             }
@@ -154,17 +154,41 @@ addRole = () => {
         {
             type: "input",
             name: "addRole",
-            message: "What is the role Title?"
+            message: "What is the role title?",
+            validate: addRoleInput => {
+                if (addRoleInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a role title!');
+                    return false;
+                }
+            }
         },
         {
             type: "input",
             name: "addSalary",
-            message: "What is the Salary?"
+            message: "What is the salary?",
+            validate: addSalaryInput => {
+                if (addSalaryInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a salary!');
+                    return false;
+                }
+            }
         },
         {
             type: "input",
             name: "addDepartment",
-            message: "What is the Department?"
+            message: "What is the Department?",
+            validate: addDepartmentInput => {
+                if (addDepartmentInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a department!');
+                    return false;
+                }
+            }
         },
     ])
         .then(answer => {
@@ -186,26 +210,54 @@ addEmployee = () => {
         {
             type: "input",
             name: "firstName",
-            message: "What is the employee's first name?"
-
+            message: "What is the employee's first name?",
+            validate: firstNameInput => {
+                if (firstNameInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the employee's first name!");
+                    return false;
+                }
+            }
         },
         {
             type: "input",
             name: "lastName",
-            message: "What is the employee's last name?"
-
+            message: "What is the employee's last name?",
+            validate: lastNameInput => {
+                if (lastNameInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the employee's last name!");
+                    return false;
+                }
+            }
         },
         {
             type: "input",
             name: "role",
-            message: "What is the employee's role?"
-
+            message: "What is the employee's role?",
+            validate: roleInput => {
+                if (roleInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the employee's role!");
+                    return false;
+                }
+            }
         },
         {
             type: "input",
             name: "manager",
-            message: "What is the employee's manager?"
-
+            message: "What is the employee's manager?",
+            validate: managerInput => {
+                if (managerInput) {
+                    return true;
+                } else {
+                    console.log("Please chose the employee's manager!");
+                    return false;
+                }
+            }
         },
     ])
         .then(answer => {

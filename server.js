@@ -12,7 +12,7 @@ const connection = mysql.createConnection(
         // Your MySQL username,
         user: 'root',
         // Your MySQL password
-        password: '',
+        password: '*******',
         database: 'employee_db'
     },
     console.log('Connected to the employee database.')
@@ -167,7 +167,7 @@ addRole = () => {
         {
             type: "input",
             name: "addSalary",
-            message: "What is the salary?",
+            message: "What is the salary of the role?",
             validate: addSalaryInput => {
                 if (addSalaryInput) {
                     return true;
@@ -180,7 +180,7 @@ addRole = () => {
         {
             type: "input",
             name: "addDepartment",
-            message: "What is the Department?",
+            message: "Which department does the role belong to?",
             validate: addDepartmentInput => {
                 if (addDepartmentInput) {
                     return true;
